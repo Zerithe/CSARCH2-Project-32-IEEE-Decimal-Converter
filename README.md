@@ -4,3 +4,6 @@ npm i
 
 ## create .env file with:
 SERVER_PORT = 3000
+
+# run
+npm start
