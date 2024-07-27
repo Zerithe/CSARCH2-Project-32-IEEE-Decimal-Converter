@@ -1,0 +1,23 @@
+{
+  "name": "csarch2-project-32-ieee-decimal-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prynetopg777/CSARCH2-Project-32-IEEE-Decimal-Converter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prynetopg777/CSARCH2-Project-32-IEEE-Decimal-Converter/issues"
+  },
+  "homepage": "https://github.com/prynetopg777/CSARCH2-Project-32-IEEE-Decimal-Converter#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
