@@ -44,8 +44,24 @@ app.post('/', async (req, res) => {
     console.log(decimal, ' ', exponent, ' ', rnd_methd);
     if(inputValidation(decimal, exponent)){
         console.log('valid input');
-        //replace python exec later
-        res.json({output: 'Valid Input'});
+        //replace with python exec later
+        exec(`py decimal_to_ieee.py ${decimal} ${exponent} ${rnd_methd}`, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${error}`);
+            }
+    
+            if (stderr) {
+                console.error(`stderr: ${stderr}`);
+            }
+            console.log(stdout.trim());
+            try{
+                const output = JSON.parse(stdout.trim());
+                res.json({output});
+            } catch (err) {
+                console.error('JSON parse error: ', err);
+                res.status(500).json({output: 'Internal Server Error'});
+            }
+        });
     } else {
         console.log('invalid input');
         res.json({output: 'Invalid Input'});

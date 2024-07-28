@@ -22,7 +22,10 @@ form.addEventListener('submit', async (e) => {
             }
         });
         const data = await res.json();
-        document.querySelector('#output').innerHTML = data.output;
+        document.querySelector('#output').innerHTML = `
+        Binary: ${data.output.binary_output} <br>
+        Hex: ${data.output.hex_output.toUpperCase()} <br>
+        `;
     } catch(err){
         console.log('error', err);
         alert('error occured', err);
