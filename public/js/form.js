@@ -21,6 +21,8 @@ form.addEventListener('submit', async (e) => {
                 'content-type': 'application/json'
             }
         });
+        const data = await res.json();
+        document.querySelector('#output').innerHTML = data.output;
     } catch(err){
         console.log('error', err);
         alert('error occured', err);

@@ -44,10 +44,11 @@ app.post('/', async (req, res) => {
     console.log(decimal, ' ', exponent, ' ', rnd_methd);
     if(inputValidation(decimal, exponent)){
         console.log('valid input');
-        res.json({decimal});
+        //replace python exec later
+        res.json({output: 'Valid Input'});
     } else {
         console.log('invalid input');
-        res.json({decimal});
+        res.json({output: 'Invalid Input'});
     }
 
 });
