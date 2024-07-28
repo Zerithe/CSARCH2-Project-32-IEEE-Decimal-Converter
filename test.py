@@ -1,6 +1,6 @@
 import sys
 
-output = "goodbye"
+output = "test"
 
 if __name__ == "__main__":
     print(output)
