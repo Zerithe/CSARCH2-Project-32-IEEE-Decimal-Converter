@@ -39,6 +39,52 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     exponent += 101
     print(f"Exponent after biasing: {exponent}")
     
+    # Get the Combination Field
+    # Step CF1: Get the MSB of the value
+    while value >= 10:
+        value //= 10
+    MSB_value = int(value)
+    #print(f"MSB value: {MSB_value}")                            # Get rid of this
+    # Step CF2: Turn the MSB to binary
+    bin_MSB_value = format(MSB_value, '04b')
+    #print(f"Binary: {bin_MSB_value}")                           # Get rid of this
+    
+    if MSB_value >= 0 and MSB_value < 8:
+        # Change the exponent into binary 
+        #print(f"Exponent Binary: {exponent}")                   # Get rid of this
+        bin_exponent = format(exponent, '08b')
+        #print(f"Binary Exponent: {bin_exponent}")               # Get rid of this
+        # Get the 2 MSB in the exponent
+        A = bin_exponent[:2]
+        print (f"A: {A}")                                       # Get rid of this
+        B = bin_MSB_value[-3:]
+        print (f"B: {B}")                                       # Get rid of this
+        combination_field = str(A) + str(B)
+        #print (f"Combination Field: {combination_field}")       #Get rid of this
+    elif MSB_value == 8:
+        A = "11"
+        # Get the 2 MSB in the experiment
+        bin_exponent = format(exponent, '08b')
+        B = bin_exponent[:2]
+        #print(f"Binary exponent: {bin_exponent}")
+        #print(f"B: {B}")
+        # Get the LSB of the value
+        C = "0"
+        combination_field = str(A) + str(B) + str(C)
+    elif MSB_value == 9:
+        A = "11"
+        # Get the 2 MSB in the experiment
+        bin_exponent = format(exponent, '08b')
+        B = bin_exponent[:2]
+        #print(f"Binary exponent: {bin_exponent}")
+        #print(f"B: {B}")
+        # Get the LSB of the value
+        C = "1"
+        combination_field = str(A) + str(B) + str(C)
+            
+        
+        
+    
     # Step 3: Apply rounding
     if rounding_method == 'truncate':
         significand = int(value)
@@ -48,7 +94,7 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
         significand = math.ceil(value)
     elif rounding_method == 'nearest':
         significand = round(value)
-    print(f"Significand after rounding ({rounding_method}): {significand}")
+        print(f"Significand after rounding ({rounding_method}): {significand}")
 
     # Step 4: Convert to binary
     sign_bin = f"{sign_bit:01b}"
@@ -56,6 +102,7 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     significand_bin = f"{significand:023b}"[1:24].ljust(26, '0')
     
     print(f"Binary sign bit: {sign_bin}")
+    print(f"Binary combination field: {combination_field}") #print for combination field
     print(f"Binary exponent: {exponent_bin}")
     print(f"Binary significand: {significand_bin}")
 
@@ -68,7 +115,7 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     return f"{sign_bin} {exponent_bin} {significand_bin[:23]}", ieee_754_hex
 
 # Example Usage
-value = -1.234567 * 10**15
+value = -9.234567 * 10**15
 rounding_method = 'nearest'
 binary_output, hex_output = float_to_ieee_754_decimal32(value, rounding_method)
 print("Binary Output:", binary_output)
