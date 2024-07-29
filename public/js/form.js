@@ -23,6 +23,10 @@ form.addEventListener('submit', async (e) => {
         });
         const data = await res.json();
         document.querySelector('#output').innerHTML = `
+        Sign Bit: ${data.output.sign_bit} <br>
+        Combination Field: ${data.output.combination_bit} <br>
+        Exponent Field: ${data.output.exponent_bit} <br>
+        Significand Field: ${data.output.first_significand_bit} ${data.output.second_significand_bit} <br>
         Binary: ${data.output.binary_output} <br>
         Hex: ${data.output.hex_output.toUpperCase()} <br>
         `;

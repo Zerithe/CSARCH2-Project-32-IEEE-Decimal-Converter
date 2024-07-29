@@ -1,19 +1,19 @@
 <form id="inputform">
   <label for="decimal_input">Decimal:</label>
-  <input type="text" id="decimal_input" name="decimal"><br><br>
+  <input type="text" id="decimal_input" name="decimal" required><br><br>
   <label for="exponent_input">Exponent:</label>
-  <input type="text" id="exponent_input" name="exponent"><br><br>
+  <input type="text" id="exponent_input" name="exponent" required><br><br>
 
   <label for="round_label">Round Off Method</label><br>
   <input type="radio" id="round_method1" name="rnd_mthd" value="truncate">
   <label for="round_method1">Truncation</label><br>
-  <input type="radio" id="round_method2" name="rnd_mthd" value="down">
+  <input type="radio" id="round_method2" name="rnd_mthd" value="up">
   <label for="round_method2">Round Up</label><br>
-  <input type="radio" id="round_method3" name="rnd_mthd" value="up">
+  <input type="radio" id="round_method3" name="rnd_mthd" value="down">
   <label for="round_method3">Round Down</label><br>
-  <input type="radio" id="round_method4" name="rnd_mthd" value="nearest">
+  <input type="radio" id="round_method4" name="rnd_mthd" value="nearestzero">
   <label for="round_method4">Round to Nearest, Ties away from Zero</label><br>
-  <input type="radio" id="round_method5" name="rnd_mthd" value="nearest" checked>
+  <input type="radio" id="round_method5" name="rnd_mthd" value="nearesteven" checked>
   <label for="round_method5">Round to Nearest, Ties to Even</label><br>
 
   <input type="submit" value="Submit">

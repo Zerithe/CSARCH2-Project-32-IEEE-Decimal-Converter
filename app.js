@@ -42,31 +42,23 @@ app.post('/', async (req, res) => {
     console.log(req.body);
     const {decimal, exponent, rnd_methd} = req.body;
     console.log(decimal, ' ', exponent, ' ', rnd_methd);
-    if(inputValidation(decimal, exponent)){
-        console.log('valid input');
-        //replace with python exec later
-        exec(`py decimal_to_ieee.py ${decimal} ${exponent} ${rnd_methd}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`exec error: ${error}`);
-            }
-    
-            if (stderr) {
-                console.error(`stderr: ${stderr}`);
-            }
-            console.log(stdout.trim());
-            try{
-                const output = JSON.parse(stdout.trim());
-                res.json({output});
-            } catch (err) {
-                console.error('JSON parse error: ', err);
-                res.status(500).json({output: 'Internal Server Error'});
-            }
-        });
-    } else {
-        console.log('invalid input');
-        res.json({output: 'Invalid Input'});
-    }
+    exec(`py decimal_to_ieee.py ${decimal} ${exponent} ${rnd_methd}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+        }
 
+        if (stderr) {
+            console.error(`stderr: ${stderr}`);
+        }
+        console.log(stdout.trim());
+        try{
+            const output = JSON.parse(stdout.trim());
+            res.json({output});
+        } catch (err) {
+            console.error('JSON parse error: ', err);
+            res.status(500).json({output: 'Internal Server Error'});
+        }
+    });
 });
 
 app.listen(process.env.SERVER_PORT, () => {
