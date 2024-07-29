@@ -107,12 +107,12 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     print(f"Binary significand: {significand_bin}")
 
     # Step 5: Combine all parts
-    ieee_754_bin = sign_bin + exponent_bin + significand_bin
+    ieee_754_bin = sign_bin + combination_field + exponent_bin + significand_bin
     
     # Step 6: Convert to hexadecimal
     ieee_754_hex = f"{int(ieee_754_bin, 2):08x}"
     
-    return f"{sign_bin} {exponent_bin} {significand_bin[:23]}", ieee_754_hex
+    return f"{sign_bin} {combination_field} {exponent_bin} {significand_bin[:23]}", ieee_754_hex
 
 # Example Usage
 value = -9.234567 * 10**15
