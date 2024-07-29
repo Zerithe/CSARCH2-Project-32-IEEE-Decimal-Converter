@@ -1,6 +1,17 @@
 import math
 
 def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
+    """
+    Converts a floating-point number to IEEE 754 Decimal32 format.
+    
+    Parameters:
+    - value (float): The floating-point number to convert.
+    - rounding_method (str): The rounding method to apply. Options are 'nearest', 'truncate', 'down', 'up'.
+    
+    Returns:
+    - tuple: Binary and hexadecimal representation of the Decimal32 formatted number.
+    """
+    
     # Handle special cases
     if math.isnan(value):
         print("Input is NaN")
@@ -39,53 +50,36 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     exponent += 101
     print(f"Exponent after biasing: {exponent}")
     
-    # Get the Combination Field
+    # Step 3: Get the Combination Field
     # Step CF1: Get the MSB of the value
     while value >= 10:
         value //= 10
     MSB_value = int(value)
-    #print(f"MSB value: {MSB_value}")                            # Get rid of this
+    
     # Step CF2: Turn the MSB to binary
     bin_MSB_value = format(MSB_value, '04b')
-    #print(f"Binary: {bin_MSB_value}")                           # Get rid of this
     
     if MSB_value >= 0 and MSB_value < 8:
-        # Change the exponent into binary 
-        #print(f"Exponent Binary: {exponent}")                   # Get rid of this
+        # Change the exponent into binary
         bin_exponent = format(exponent, '08b')
-        #print(f"Binary Exponent: {bin_exponent}")               # Get rid of this
         # Get the 2 MSB in the exponent
         A = bin_exponent[:2]
-        print (f"A: {A}")                                       # Get rid of this
         B = bin_MSB_value[-3:]
-        print (f"B: {B}")                                       # Get rid of this
         combination_field = str(A) + str(B)
-        #print (f"Combination Field: {combination_field}")       #Get rid of this
     elif MSB_value == 8:
         A = "11"
-        # Get the 2 MSB in the experiment
         bin_exponent = format(exponent, '08b')
         B = bin_exponent[:2]
-        #print(f"Binary exponent: {bin_exponent}")
-        #print(f"B: {B}")
-        # Get the LSB of the value
         C = "0"
         combination_field = str(A) + str(B) + str(C)
     elif MSB_value == 9:
         A = "11"
-        # Get the 2 MSB in the experiment
         bin_exponent = format(exponent, '08b')
         B = bin_exponent[:2]
-        #print(f"Binary exponent: {bin_exponent}")
-        #print(f"B: {B}")
-        # Get the LSB of the value
         C = "1"
         combination_field = str(A) + str(B) + str(C)
-            
-        
-        
     
-    # Step 3: Apply rounding
+    # Step 4: Apply rounding
     if rounding_method == 'truncate':
         significand = int(value)
     elif rounding_method == 'down':
@@ -94,22 +88,22 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
         significand = math.ceil(value)
     elif rounding_method == 'nearest':
         significand = round(value)
-        print(f"Significand after rounding ({rounding_method}): {significand}")
+    print(f"Significand after rounding ({rounding_method}): {significand}")
 
-    # Step 4: Convert to binary
+    # Step 5: Convert to binary
     sign_bin = f"{sign_bit:01b}"
     exponent_bin = f"{exponent:05b}"[1:]
     significand_bin = f"{significand:023b}"[1:24].ljust(26, '0')
     
     print(f"Binary sign bit: {sign_bin}")
-    print(f"Binary combination field: {combination_field}") #print for combination field
+    print(f"Binary combination field: {combination_field}")
     print(f"Binary exponent: {exponent_bin}")
     print(f"Binary significand: {significand_bin}")
 
-    # Step 5: Combine all parts
+    # Step 6: Combine all parts
     ieee_754_bin = sign_bin + combination_field + exponent_bin + significand_bin
     
-    # Step 6: Convert to hexadecimal
+    # Step 7: Convert to hexadecimal
     ieee_754_hex = f"{int(ieee_754_bin, 2):08x}"
     
     return f"{sign_bin} {combination_field} {exponent_bin} {significand_bin[:23]}", ieee_754_hex
