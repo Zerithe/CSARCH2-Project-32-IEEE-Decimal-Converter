@@ -3,17 +3,22 @@ import { engine } from 'express-handlebars';
 import 'dotenv/config';
 import bodyParser from 'body-parser';
 import { exec } from 'child_process';
+import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express(); 
 const port = process.env.PORT || 3000;
 
-app.use(express.static('.\\views'));
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());
-app.use('/static', express.static('public'));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set('views', '.\\views');
+app.set('views', path.join(__dirname, 'views'));
 
 function inputValidation(decimal, exponent_input){
     var regExp = /^[+-]?[0-9.]+$/;
@@ -26,7 +31,7 @@ function inputValidation(decimal, exponent_input){
 }
 
 app.get('/', (req, res) => {
-    exec(`py test.py`, (error, stdout, stderr) => {
+    exec(`python test.py`, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
         }
@@ -43,7 +48,7 @@ app.post('/', async (req, res) => {
     console.log(req.body);
     const {decimal, exponent, rnd_methd} = req.body;
     console.log(decimal, ' ', exponent, ' ', rnd_methd);
-    exec(`py decimal_to_ieee.py ${decimal} ${exponent} ${rnd_methd}`, (error, stdout, stderr) => {
+    exec(`python decimal_to_ieee.py ${decimal} ${exponent} ${rnd_methd}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
         }
