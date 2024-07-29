@@ -4,7 +4,8 @@ import 'dotenv/config';
 import bodyParser from 'body-parser';
 import { exec } from 'child_process';
 
-const app = express();
+const app = express(); 
+const port = process.env.PORT || 3000;
 
 app.use(express.static('.\\views'));
 app.use(bodyParser.json());
@@ -61,6 +62,6 @@ app.post('/', async (req, res) => {
     });
 });
 
-app.listen(process.env.SERVER_PORT, () => {
+app.listen(port, () => {
     console.log('server is now listening...');
 });
