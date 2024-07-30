@@ -1,0 +1,103 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e9ebf8;
+}
+
+#jsconverter {
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.header {
+    font-size: 120%;
+    font-weight: bold;
+    padding: 0.5em;
+    text-align: center;
+    color: #4D78F6;
+}
+
+#numbertable {
+    width: 100%;
+    margin-bottom: 1em;
+    border-collapse: collapse;
+}
+
+#numbertable .label {
+    text-align: center;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    background-color: #d2d2e7;
+    border-radius: 5px;
+}
+
+#numbertable .input {
+    padding: 0.5em 1em;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.round-method {
+    padding: 1em 0;
+}
+
+.round-label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+input[type="submit"] {
+    padding: 0.5em 1em;
+    background-color: #4D78F6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #3b5fc9;
+}
+
+#output-container {
+    margin-top: 1em;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#output {
+    font-size: 1.2em;
+    color: #333;
+}
+
+button {
+    padding: 0.5em 1em;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
