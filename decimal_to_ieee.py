@@ -1,4 +1,5 @@
 import math
+from decimal import Decimal, getcontext
 
 def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     """
@@ -11,6 +12,11 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     Returns:
     - tuple: Binary and hexadecimal representation of the Decimal32 formatted number.
     """
+    # Set precision high enough to handle large and small values
+    getcontext().prec = 50
+    
+    # Convert value to Decimal for higher precision arithmetic
+    value = Decimal(value)
     
     # Handle special cases
     if math.isnan(value):
@@ -36,6 +42,7 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     print(f"Absolute value: {value}")
 
     # Step 2: Normalize the number to 7 whole digits
+    """
     exponent = 0
     while value >= 10**7:
         value /= 10
@@ -43,13 +50,27 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     while value < 10**6 and value != 0:
         value *= 10
         exponent -= 1
+    
     print(f"Normalized value: {value}")
     print(f"Exponent before biasing: {exponent}")
-
+    """
+    # had to change due to floating point limitations, and handling negative e
+    # Test case: value = 7123456 * 10**20, normalized value 7123455.999999997, instead of 7123456 (FIXED)
+    # Test case: value = -8765432 * 10**-20, works, instead of crashing (FIXED)
+    exponent = 0
+    while value >= Decimal(10**7):
+        value /= Decimal(10)
+        exponent += 1
+    while value < Decimal(10**6) and value != 0:
+        value *= Decimal(10)
+        exponent -= 1
+    print(f"Normalized value: {value}")
+    print(f"Exponent before biasing: {exponent}")
+    
     # Adjust exponent to fit the bias of Decimal32 format
     exponent += 101
     print(f"Exponent after biasing: {exponent}")
-    
+  
     # Step 3: Get the Combination Field
     # Step CF1: Get the MSB of the value
     while value >= 10:
@@ -80,7 +101,9 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
         combination_field = str(A) + str(B) + str(C)
     
     # Step 4: Apply rounding
-    if rounding_method == 'truncate':
+     # Test case: value = 7123456 * 10**20, incorrect coefficient continuation , 0010100011 1001010110(expected), 0000000000 0000000001110(actual)
+
+    if rounding_method == 'truncate': # base
         significand = int(value)
     elif rounding_method == 'down':
         significand = math.floor(value)
@@ -88,6 +111,7 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
         significand = math.ceil(value)
     elif rounding_method == 'nearest':
         significand = round(value)
+        
     print(f"Significand after rounding ({rounding_method}): {significand}")
 
     # Step 5: Convert to binary
@@ -109,7 +133,7 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     return f"{sign_bin} {combination_field} {exponent_bin} {significand_bin[:23]}", ieee_754_hex
 
 # Example Usage
-value = -9.234567 * 10**15
+value = -1.234567 * 10**15
 rounding_method = 'nearest'
 binary_output, hex_output = float_to_ieee_754_decimal32(value, rounding_method)
 print("Binary Output:", binary_output)
