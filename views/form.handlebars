@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE-754 Decimal-32 floating-point converter</title>
+    <link rel="stylesheet" href="/design.css">
+</head>
+<body>
+    <div id="jsconverter">
+        <div class="header">
+            IEEE-754 Decimal-32 floating-point Converter
+        </div>
+        <form id="inputform">
+            <table id="numbertable">
+                <tr>
+                    <td class="label">Decimal</td>
+                    <td class="input"><input type="text" id="decimal_input" name="decimal" required></td>
+                </tr>
+                <tr>
+                    <td class="label">Exponent</td>
+                    <td class="input"><input type="text" id="exponent_input" name="exponent" required></td>
+                </tr>
+            </table>
+            <div class="round-method">
+                <div class="round-label">Round Off Method</div>
+                <input type="radio" id="round_method1" name="rnd_mthd" value="truncate">
+                <label for="round_method1">Truncation</label><br>
+                <input type="radio" id="round_method2" name="rnd_mthd" value="up">
+                <label for="round_method2">Round Up</label><br>
+                <input type="radio" id="round_method3" name="rnd_mthd" value="down">
+                <label for="round_method3">Round Down</label><br>
+                <input type="radio" id="round_method4" name="rnd_mthd" value="nearestzero">
+                <label for="round_method4">Round to Nearest, Ties away from Zero</label><br>
+                <input type="radio" id="round_method5" name="rnd_mthd" value="nearesteven" checked>
+                <label for="round_method5">Round to Nearest, Ties to Even</label><br>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+        <button id="download" style="display:none;">Export To Text File</button>
+        <div id="output-container">
+            <h2 id="output">{{output}}</h2>
+        </div>
+    </div>
+    <script type="module" src="/static/js/form.js"></script>
+</body>
+</html>
