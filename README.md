@@ -6,6 +6,9 @@
   The function handles special cases such as NaN (Not a Number), positive infinity, negative infinity, and zero. 
   It also normalizes the value, adjusts the exponent to fit the bias, applies rounding, and formats the result in both binary and hexadecimal.
 
+### Deployed Version:
+Can be found at https://csarch2-project-32-ieee-decimal.onrender.com
+
 ### How to start the Converter:
   Step 1: 
   Open in any Source Code Editor, or compiler.
