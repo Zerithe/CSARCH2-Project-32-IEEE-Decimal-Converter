@@ -56,9 +56,9 @@ def round_half_away_from_zero(value):
     - Decimal: The rounded value.
     """
     if value > 0:
-        return value.to_integral_value(rounding=ROUND_HALF_UP)
+        return math.floor(value + 0.5)
     else:
-        return value.to_integral_value(rounding=ROUND_HALF_UP)
+        return math.ceil(value - 0.5)
     
 def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     """
@@ -80,7 +80,6 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
         - Hexadecimal representation
     """
     getcontext().prec = 50
-    value = Decimal(value)
     
     # Handle special cases
     if math.isnan(value):
