@@ -80,7 +80,6 @@ def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
         - Hexadecimal representation
     """
     getcontext().prec = 50
-    value = Decimal(value)
     
     # Handle special cases
     if math.isnan(value):
