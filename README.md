@@ -6,7 +6,7 @@
   The function handles special cases such as NaN (Not a Number), positive infinity, negative infinity, and zero. 
   It also normalizes the value, adjusts the exponent to fit the bias, applies rounding, and formats the result in both binary and hexadecimal.
 
-### How to start:
+### How to start the Converter:
   Step 1: 
   Open in any Source Code Editor, or compiler.
 
@@ -14,8 +14,14 @@
   Open the terminal and input the command, "npm install" and then "npm start"
 
   Step 3:
-  
+  Once the server starts, you can open your browser and head to http://localhost:3000/, and you can use as you see fit.
 
+### How to use the test script:
+  Step 1: 
+  Open in any Source Code Editor, or compiler.
+
+  Step 2: 
+  Open the terminal and input the command, "pip install pytest" and then "pytest test_decimal_ieee.py"
 
 ### Parameters:
   - 'value' (float): The floating-point number to be converted.
