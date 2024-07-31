@@ -55,10 +55,10 @@ def float_to_ieee_754_decimal32(value, rounding_method):
     # Handle special cases
     if math.isnan(value):
         # print("Input is NaN")
-        return '0', '11111', '00000', '0000000000000000000000', '0 11111 00000 0000000000000000000000', '7c000000'
+        return '0', '11111', '00000', '000000000000', '000000000000','0000000000000000000000', '0 11111 00000 0000000000000000000000', '7c000000'
     elif value == 0:
         # print("Input is zero")
-        return '0', '00000', '00000', '0000000000000000000000','0 00000 00000 0000000000000000000000', '00000000'
+        return '0', '00000', '00000', '000000000000', '000000000000','0000000000000000000000','0 00000 00000 0000000000000000000000', '00000000'
     
     # print(f"Initial value: {value}")
 
@@ -80,10 +80,10 @@ def float_to_ieee_754_decimal32(value, rounding_method):
     # print(f"Exponent before biasing: {exponent}")
     if exponent >= 90:
         # print("Input is positive infinity")
-        return '0', '11110', '00000', '0000000000000000000000','0 11110 00000 0000000000000000000000', '78000000'
+        return '0', '11110', '00000','000000000000', '000000000000', '0000000000000000000000','0 11110 00000 0000000000000000000000', '78000000'
     elif exponent <= -101:
         # print("Input is negative infinity")
-        return '0', '11110', '00000', '0000000000000000000000', '1 11110 00000 0000000000000000000000', 'f8000000'
+        return '0', '11110', '00000', '000000000000', '000000000000','0000000000000000000000', '1 11110 00000 0000000000000000000000', 'f8000000'
     # Adjust exponent to fit the bias of Decimal32 format
     exponent += 101
     # print(f"Exponent after biasing: {exponent}")
