@@ -1,7 +1,7 @@
 import math
 import sys
 import json
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, ROUND_HALF_UP, getcontext
 
 def bcd(binary):
     
