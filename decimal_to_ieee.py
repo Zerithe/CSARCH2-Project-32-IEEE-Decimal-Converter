@@ -51,6 +51,39 @@ def round_half_away_from_zero(value):
         return math.ceil(value - 0.5)
 
 
+def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
+    """
+    Converts a floating-point number to IEEE 754 Decimal32 format.
+    
+    Parameters:
+    - value (float): The floating-point number to convert.
+    - rounding_method (str): The rounding method to apply. Options are 'nearest', 'truncate', 'down', 'up'.
+    
+    Returns:
+    - tuple: Binary and hexadecimal representation of the Decimal32 formatted number.
+    """
+    # Set precision high enough to handle large and small values
+    getcontext().prec = 50
+    
+    # Convert value to Decimal for higher precision arithmetic
+    value = Decimal(value)
+    
+    # Handle special cases
+    if math.isnan(value):
+        print("Input is NaN")
+        return '011111 10000 0000000000000000000000', '7c000000'
+    elif math.isinf(value):
+        if value > 0:
+            print("Input is positive infinity")
+            return '011110 00000 0000000000000000000000', '78000000'
+        else:
+            print("Input is negative infinity")
+            return '111110 00000 0000000000000000000000', 'f8000000'
+    elif value == 0:
+        print("Input is zero")
+        return '000000 00000 0000000000000000000000', '00000000'
+    
+    print(f"Initial value: {value}")
 
 def float_to_ieee_754_decimal32(value, rounding_method):
     # Handle special cases
