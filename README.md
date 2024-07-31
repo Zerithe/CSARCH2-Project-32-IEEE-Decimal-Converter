@@ -6,6 +6,17 @@
   The function handles special cases such as NaN (Not a Number), positive infinity, negative infinity, and zero. 
   It also normalizes the value, adjusts the exponent to fit the bias, applies rounding, and formats the result in both binary and hexadecimal.
 
+### How to start:
+  Step 1: 
+  Open in any Source Code Editor, or compiler.
+
+  Step 2: 
+  Open the terminal and input the command, "npm install" and then "npm start"
+
+  Step 3:
+  
+
+
 ### Parameters:
   - 'value' (float): The floating-point number to be converted.
   - 'rounding_method' (str, optional): The method used for rounding the significand. Options are 'nearest', 'truncate', 'down', and 'up'. Default is 'nearest'.
