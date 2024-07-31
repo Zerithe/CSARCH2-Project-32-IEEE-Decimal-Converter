@@ -2,8 +2,13 @@
 # IEEE 754 Decimal32 Converter
 This repository provides a Python program to convert floating-point numbers to IEEE 754 Decimal32 format. It supports different rounding methods and handles special cases such as NaN (Not a Number) and infinity.
 
-### Deployed Version:
-Can be found at https://csarch2-project-32-ieee-decimal.onrender.com
+## Notable Links:
+#### Deployed Web Sim
+- https://csarch2-project-32-ieee-decimal.onrender.com
+#### Youtube Unlisted Link for Demo
+- https://www.youtube.com/watch?v=RDygdXYcHd8
+#### Google Drive Link for Write up, Test Cases, and Video Demo
+- https://drive.google.com/drive/folders/1FMjwo4BJjRYNstsf27g0R7b2DOEI1ZUS?usp=drive_link
 
 ## Overview
 The IEEE 754 Decimal32 format is a binary-coded decimal (BCD) representation of floating-point numbers. The converter in this repository converts a floating-point number into its IEEE 754 Decimal32 format and provides both binary and hexadecimal representations.
@@ -19,7 +24,6 @@ The IEEE 754 Decimal32 format is a binary-coded decimal (BCD) representation of 
 - **Rounding methods**: Supports various rounding methods including 'nearest', 'truncate', 'down', 'up', 'nearestzero', and 'nearesteven'.
 - **Handling special cases**: Handles NaN, positive infinity, and negative infinity.
 - **Output**: Provides the binary and hexadecimal representation of the Decimal32 formatted number.
-  
 
 ### How to start the Converter:
   Step 1: 
