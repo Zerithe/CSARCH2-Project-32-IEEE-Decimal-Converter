@@ -1,4 +1,4 @@
-const form = document.getElementById('inputform');
+const form = document.querySelector('#inputform');
 const downloadBtn = document.querySelector('#download');
 
 form.addEventListener('submit', async (e) => {
