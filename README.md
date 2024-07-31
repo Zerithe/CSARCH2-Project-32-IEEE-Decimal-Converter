@@ -1,13 +1,25 @@
 
-# float_to_ieee_754_decimal32
+# IEEE 754 Decimal32 Converter
+This repository provides a Python program to convert floating-point numbers to IEEE 754 Decimal32 format. It supports different rounding methods and handles special cases such as NaN (Not a Number) and infinity.
+
+### Deployed Version:
+Can be found at https://csarch2-project-32-ieee-decimal.onrender.com
+
+## Overview
+The IEEE 754 Decimal32 format is a binary-coded decimal (BCD) representation of floating-point numbers. The converter in this repository converts a floating-point number into its IEEE 754 Decimal32 format and provides both binary and hexadecimal representations.
 
 ### Description:
   Converts a given floating-point number into its IEEE 754 Decimal32 format representation. 
   The function handles special cases such as NaN (Not a Number), positive infinity, negative infinity, and zero. 
   It also normalizes the value, adjusts the exponent to fit the bias, applies rounding, and formats the result in both binary and hexadecimal.
+  
+## Features
 
-### Deployed Version:
-Can be found at https://csarch2-project-32-ieee-decimal.onrender.com
+- **Conversion to IEEE 754 Decimal32 format**: Converts floating-point numbers to the IEEE 754 Decimal32 format.
+- **Rounding methods**: Supports various rounding methods including 'nearest', 'truncate', 'down', 'up', 'nearestzero', and 'nearesteven'.
+- **Handling special cases**: Handles NaN, positive infinity, and negative infinity.
+- **Output**: Provides the binary and hexadecimal representation of the Decimal32 formatted number.
+  
 
 ### How to start the Converter:
   Step 1: 
@@ -27,11 +39,20 @@ Can be found at https://csarch2-project-32-ieee-decimal.onrender.com
   Open the terminal and input the command, "pip install pytest" and then "pytest test_decimal_ieee.py"
 
 ### Parameters:
-  - 'value' (float): The floating-point number to be converted.
-  - 'rounding_method' (str, optional): The method used for rounding the significand. Options are 'nearest', 'truncate', 'down', and 'up'. Default is 'nearest'.
+- <decimal_input>: The floating-point number to be converted.
+- <exponent_input>: The exponent to adjust the scale of the decimal number.
+- <rounding_method>: The rounding method to apply. Options are 'nearest', 'truncate', 'down', 'up', 'nearestzero', 'nearesteven'.
     
 ### Returns:
-  - tuple: A tuple containing the binary string representation and the hexadecimal string representation of the IEEE 754 Decimal32 format.
+The script will output a JSON object with the following fields:
+- sign_bit: The sign bit of the IEEE 754 Decimal32 representation.
+- combination_bit: The combination field of the IEEE 754 Decimal32 representation.
+- exponent_bit: The exponent field of the IEEE 754 Decimal32 representation.
+- first_significand_bit: The first half of the significand in binary.
+- second_significand_bit: The second half of the significand in binary.
+- significand_bit: The full significand in binary.
+- binary_output: The complete binary representation of the Decimal32 formatted number.
+- hex_output: The hexadecimal representation of the Decimal32 formatted number.
   
 ### Special Cases:
 1. NaN (Not a Number):
