@@ -47,19 +47,19 @@ def str_to_binary(half):
 
 def round_half_away_from_zero(value):
     """
-    Round a floating-point number away from zero.
+    Round a Decimal number away from zero.
 
     Parameters:
-    - value (float): The value to round.
+    - value (Decimal): The value to round.
 
     Returns:
-    - int: The rounded value.
+    - Decimal: The rounded value.
     """
     if value > 0:
-        return math.floor(value + 0.5)
+        return value.to_integral_value(rounding=ROUND_HALF_UP)
     else:
-        return math.ceil(value - 0.5)
-
+        return value.to_integral_value(rounding=ROUND_HALF_UP)
+    
 def float_to_ieee_754_decimal32(value, rounding_method='nearest'):
     """
     Convert a floating-point number to IEEE 754 Decimal32 format.
